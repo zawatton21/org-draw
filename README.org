@@ -25,26 +25,46 @@ following softwares should be setuped correctly.
 
 * Installation
 
-You must download the code and require it manually.
+** async-installer
 
 #+begin_src emacs-lisp
-  ;; add to load path
-  (add-to-list 'load-path "/path/to/org-excalidraw.el")
-
-  ;; load
-  (require 'org-excalidraw)
+(async-installer-github-add "https://github.com/zawatton21/org-draw.git"
+                            :branch "master"
+                            :main "org-draw.el")
 #+end_src
 
-or use =use-package= with =quelpa= enabled: 
+** straight.el
 
 #+begin_src emacs-lisp
-  (use-package org-excalidraw
-    :commands (org-excalidraw-create-drawing)
-    :quelpa (org-excalidraw :repo 4honor/org-excalidraw :fetcher github)
-    ;; customize diragram directory
-    (setq org-excalidraw-default-directory "/path/to/diragrams/root"))
+(straight-use-package
+ '(org-draw :type git :host github :repo "zawatton21/org-draw"))
+#+end_src
 
-  (require 'org-excalidraw)
+** elpaca
+
+#+begin_src emacs-lisp
+(elpaca (org-draw :host github :repo "zawatton21/org-draw"))
+#+end_src
+
+** use-package (with straight or elpaca)
+
+#+begin_src emacs-lisp
+;; with straight
+(use-package org-draw
+  :straight (org-draw :type git :host github :repo "zawatton21/org-draw"))
+
+;; with elpaca
+(use-package org-draw
+  :ensure (:host github :repo "zawatton21/org-draw"))
+#+end_src
+
+** Manual
+
+Clone this repository and add it to your =load-path=:
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "/path/to/org-draw")
+(require 'org-draw)
 #+end_src
 
 * Usage
