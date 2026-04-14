@@ -1,0 +1,88 @@
+#+title: org-draw — Org mode 向け Excalidraw 統合
+
+*言語:* [[file:README.org][English]] / 日本語
+
+#+html: <a href="https://github.com/sponsors/zawatton21"><img src="https://img.shields.io/badge/Sponsor_%E2%9D%A4_Support_this_project-pink?style=for-the-badge" alt="Sponsor"></a>
+
+=org-draw=（=org-excalidraw.el=）は、Org mode から Excalidraw 図を作成・開く・エクスポート・表示するためのパッケージです。
+
+* 動作要件
+
+正しく動作させるために、以下の要件を満たす必要があります。
+
+** 図を開く
+
+Excalidraw ファイルを開いて編集するには、次のいずれかを行います。
+
+1. Google Chrome に Excalidraw アプリをインストールする
+2. =.excalidraw= 拡張子のファイルを開くデフォルトアプリケーションとして Excalidraw を設定する
+3. デスクトップ環境のリソースオープナーで動作確認する
+
+   - Linux の場合: ~xdg-open /path/to/example.excalidraw~
+   - Mac の場合: ~open /path/to/example.excalidraw~
+
+** サムネイルの作成
+
+エクスポートと表示のために SVG サムネイルが生成されます。以下のいずれかのツールを正しくセットアップしてください。
+
+- [推奨] [[https://github.com/yuzutech/kroki-cli][yuzutech/kroki-cli]] — バイナリでインストール可能。セットアップはマニュアルを参照してください
+- [[https://github.com/Timmmm/excalidraw_export][Timmmm/excalidraw_export]] — ~npm install -g excalidraw_export~ でインストール
+
+* インストール
+
+** async-installer
+
+[[https://github.com/zawatton21/async-installer][async-installer]] — Emacs 向けの小さなノンブロッキングパッケージマネージャ。純粋な Elisp 構文で、マクロ DSL 不要。
+
+#+begin_src emacs-lisp
+(async-installer-git-add "https://github.com/zawatton21/org-draw.git"
+                            :branch "master"
+                            :main "org-draw.el")
+#+end_src
+
+** straight.el
+
+#+begin_src emacs-lisp
+(straight-use-package
+ '(org-draw :type git :host github :repo "zawatton21/org-draw"))
+#+end_src
+
+** elpaca
+
+#+begin_src emacs-lisp
+(elpaca (org-draw :host github :repo "zawatton21/org-draw"))
+#+end_src
+
+** use-package（straight または elpaca と組み合わせて）
+
+#+begin_src emacs-lisp
+;; straight を使う場合
+(use-package org-draw
+  :straight (org-draw :type git :host github :repo "zawatton21/org-draw"))
+
+;; elpaca を使う場合
+(use-package org-draw
+  :ensure (:host github :repo "zawatton21/org-draw"))
+#+end_src
+
+** 手動インストール
+
+リポジトリをクローンして =load-path= に追加します。
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "/path/to/org-draw")
+(require 'org-draw)
+#+end_src
+
+* 使い方
+
+- =excalidraw= リンクタイプは、Org mode が提供する他のリンクタイプと同じように扱います
+- コマンド =org-excalidraw-create-drawing= で空の図を作成できます
+- カスタマイズ変数 =org-excalidraw-default-directory= で新しい図の保存先ディレクトリを指定できます
+
+* 謝辞
+
+このパッケージは以下の成果物をもとに構築されています。
+
+- [[https://github.com/TobiasZawada/org-yt][TobiasZawada/org-yt: Youtube links in org-mode]] — 表示部分の参考
+- [[https://github.com/wdavew/org-excalidraw][wdavew/org-excalidraw]] — 作成・オープン部分の着想の源
