@@ -2,7 +2,7 @@
 
 *言語:* [[file:README.org][English]] / 日本語
 
-#+html: <a href="https://github.com/sponsors/zawatton21"><img src="https://img.shields.io/badge/Sponsor_%E2%9D%A4_Support_this_project-pink?style=for-the-badge" alt="Sponsor"></a>
+#+html: <a href="https://github.com/sponsors/zawatton"><img src="https://img.shields.io/badge/Sponsor_%E2%9D%A4_Support_this_project-pink?style=for-the-badge" alt="Sponsor"></a>
 
 =org-draw=（=org-excalidraw.el=）は、Org mode から Excalidraw 図を作成・開く・エクスポート・表示するためのパッケージです。
 
@@ -32,10 +32,10 @@ Excalidraw ファイルを開いて編集するには、次のいずれかを行
 
 ** async-installer
 
-[[https://github.com/zawatton21/async-installer][async-installer]] — Emacs 向けの小さなノンブロッキングパッケージマネージャ。純粋な Elisp 構文で、マクロ DSL 不要。
+[[https://github.com/zawatton/async-installer][async-installer]] — Emacs 向けの小さなノンブロッキングパッケージマネージャ。純粋な Elisp 構文で、マクロ DSL 不要。
 
 #+begin_src emacs-lisp
-(async-installer-git-add "https://github.com/zawatton21/org-draw.git"
+(async-installer-git-add "https://github.com/zawatton/org-draw.git"
                             :branch "master"
                             :main "org-draw.el")
 #+end_src
@@ -44,13 +44,13 @@ Excalidraw ファイルを開いて編集するには、次のいずれかを行
 
 #+begin_src emacs-lisp
 (straight-use-package
- '(org-draw :type git :host github :repo "zawatton21/org-draw"))
+ '(org-draw :type git :host github :repo "zawatton/org-draw"))
 #+end_src
 
 ** elpaca
 
 #+begin_src emacs-lisp
-(elpaca (org-draw :host github :repo "zawatton21/org-draw"))
+(elpaca (org-draw :host github :repo "zawatton/org-draw"))
 #+end_src
 
 ** use-package（straight または elpaca と組み合わせて）
@@ -58,11 +58,11 @@ Excalidraw ファイルを開いて編集するには、次のいずれかを行
 #+begin_src emacs-lisp
 ;; straight を使う場合
 (use-package org-draw
-  :straight (org-draw :type git :host github :repo "zawatton21/org-draw"))
+  :straight (org-draw :type git :host github :repo "zawatton/org-draw"))
 
 ;; elpaca を使う場合
 (use-package org-draw
-  :ensure (:host github :repo "zawatton21/org-draw"))
+  :ensure (:host github :repo "zawatton/org-draw"))
 #+end_src
 
 ** 手動インストール
